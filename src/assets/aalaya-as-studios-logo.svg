@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 270" role="img" aria-labelledby="title desc">
+  <title id="title">Aalaya As Studios</title>
+  <desc id="desc">Aalaya As Studios logo with an arched doorway mark</desc>
+  <g fill="none" stroke="#9A3F16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42 150V74C42 34 74 18 120 18c57 0 104 45 104 101" stroke-width="10"/>
+    <path d="M78 150V92c0-33 27-59 61-59 34 0 61 26 61 59v58" stroke-width="10"/>
+    <path d="M76 150c0-34 27-61 61-61s61 27 61 61" stroke-width="10"/>
+    <path d="M80 150v76h116v-76M104 150v76M137 150v76M170 150v76" stroke-width="8"/>
+  </g>
+  <g fill="#9A3F16" font-family="Georgia, serif">
+    <text x="248" y="158" font-size="94" letter-spacing="5">AALAYA</text>
+  </g>
+  <text x="430" y="202" fill="#1A1A1A" font-family="Georgia, serif" font-size="42" letter-spacing="3">AS STUDIOS</text>
+  <path d="M72 231h610" stroke="#9A3F16" stroke-width="3"/>
+  <text x="72" y="260" fill="#74351D" font-family="Arial, sans-serif" font-size="17" letter-spacing="7">DESIGN WITH PURPOSE TO PERFECTION</text>
+</svg>
