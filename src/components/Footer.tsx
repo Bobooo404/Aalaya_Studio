@@ -1,17 +1,10 @@
 import React from 'react';
-import { ArrowUp, Phone, Mail, MessageCircle, Instagram } from 'lucide-react';
+import { Phone, Mail, MessageCircle, Instagram } from 'lucide-react';
 import {
   EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, MAILTO_HREF, PHONE_DISPLAY, TEL_HREF, whatsappUrl
 } from '../config/contact';
 
 export const Footer: React.FC = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
@@ -169,20 +162,11 @@ export const Footer: React.FC = () => {
 
         </div>
 
-        {/* Bottom Bar: Clean single-line layout on mobile and desktop without copyright */}
-        <div className="pt-6 border-t border-white/10 flex items-center justify-between gap-4 text-xs text-white/40">
-          <p className="text-[11px] font-mono uppercase tracking-wider text-white/50">
+        {/* Bottom Bar: Centered studio name */}
+        <div className="pt-6 border-t border-white/10 flex items-center justify-center">
+          <p className="text-[11px] font-mono uppercase tracking-wider text-white/50 text-center">
             AALAYA AS STUDIOS
           </p>
-
-          <button
-            onClick={scrollToTop}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-[#B8620B] text-white transition-colors text-[11px] uppercase tracking-wider cursor-pointer"
-            id="back-to-top-btn"
-          >
-            <span>Back to Top</span>
-            <ArrowUp className="w-3.5 h-3.5" />
-          </button>
         </div>
 
       </div>

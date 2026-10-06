@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <img
             src="/logo2.png"
             alt="Aalaya As Studios"
-            className="w-36 sm:w-44 h-auto mix-blend-multiply contrast-110 saturate-90 transition-transform duration-300 group-hover:scale-[1.02]"
+            className="w-[9.45rem] sm:w-[11.55rem] h-auto mix-blend-multiply contrast-110 saturate-90 transition-transform duration-300 group-hover:scale-[1.02]"
           />
         </a>
 

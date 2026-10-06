@@ -22,7 +22,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork }) => {
   return (
     <section
       id="hero"
-      className="relative min-h-[80vh] pt-20 pb-12 lg:pt-24 lg:pb-16 flex flex-col justify-center overflow-hidden bg-[#FBF9F5]/70 backdrop-blur-[1px]"
+      className="relative min-h-[80vh] pt-32 sm:pt-40 lg:pt-24 pb-12 lg:pb-16 flex flex-col justify-center overflow-hidden bg-[#FBF9F5]/70 backdrop-blur-[1px]"
     >
       {/* Dynamic Background: Architectural Blueprint Grid & Subtle Floating Shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -91,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork }) => {
       </div>
 
       {/* Main Container */}
-      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full z-10 my-auto py-8">
+      <div className="relative max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full z-10 my-auto py-8 -translate-y-[5%] sm:translate-y-0">
         <div className="flex flex-col justify-center">
           
           {/* Studio Tagline Badge */}
@@ -99,11 +99,11 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork }) => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-[#F5F1E8] shadow-xs text-xs tracking-widest uppercase text-[#B8620B] font-semibold w-fit mb-6"
+            className="inline-flex flex-wrap items-center gap-x-2.5 gap-y-1 px-4 py-1.5 rounded-full bg-white border border-[#F5F1E8] shadow-xs text-[10px] sm:text-xs tracking-widest uppercase text-[#B8620B] font-semibold w-fit max-w-full mb-6"
           >
-            <span className="w-2 h-2 rounded-full bg-[#B8620B] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#B8620B] animate-pulse shrink-0" />
             <span>Good Design, Simple Living</span>
-            <span className="text-[#C85A17] font-normal">&bull; AALAYA AS STUDIOS</span>
+            <span className="hidden sm:inline text-[#C85A17] font-normal">&bull; AALAYA AS STUDIOS</span>
           </motion.div>
 
           {/* Headline with Staggered Word Reveal */}
