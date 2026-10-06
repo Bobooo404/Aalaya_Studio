@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Mail, Phone, Send, CheckCircle2, 
-  MessageCircle, ExternalLink, Clock, MessageSquare
+  MessageCircle, ExternalLink, Clock, MessageSquare, Instagram, AlertCircle
 } from 'lucide-react';
+import {
+  EMAIL, MAILTO_HREF, PHONE_DISPLAY, TEL_HREF, INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappUrl
+} from '../config/contact';
+import { sendContactEmail } from '../lib/emailjs';
 
 interface ContactCTAProps {
   initialMessage?: string;
@@ -16,6 +20,7 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
   const [message, setMessage] = useState(initialMessage);
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
 
   React.useEffect(() => {
     if (initialMessage) {
@@ -23,13 +28,14 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
     }
   }, [initialMessage]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email) return;
+    if (!name || !email || !message) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setError('');
+    try {
+      await sendContactEmail({ name, email, phone, message });
       setSubmitted(true);
       confetti({
         particleCount: 40,
@@ -37,13 +43,14 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
         origin: { y: 0.8 },
         colors: ['#B8620B', '#C85A17', '#E8797A', '#F5F1E8']
       });
-    }, 500);
+    } catch {
+      setError('Sorry, your message could not be sent. Please email us directly or try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const whatsappNumber = '14158902800';
-  const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    'Hello Aalaya Studios, I would like to talk about my project.'
-  )}`;
+  const whatsappHref = whatsappUrl();
 
   return (
     <section id="contact" className="relative py-20 lg:py-28 bg-[#1A1E24] text-white overflow-hidden">
@@ -71,11 +78,11 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
           </p>
         </div>
 
-        {/* 3 Prominent Quick-Contact Cards (Phone, WhatsApp, Email) */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-12">
+        {/* 4 Prominent Quick-Contact Cards (Phone, WhatsApp, Email, Instagram) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-12">
           {/* 1. Phone Card */}
           <a
-            href="tel:+91XXXXXXXX"
+            href={TEL_HREF}
             className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#B8620B]/60 hover:bg-white/10 transition-all flex flex-col justify-between"
           >
             <div>
@@ -83,7 +90,7 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
                 <Phone className="w-5 h-5" />
               </div>
               <span className="text-xs uppercase font-mono text-white/50 tracking-wider">Phone</span>
-              <p className="text-lg font-semibold text-white mt-1 font-mono">+91 XXXXXXXX</p>
+              <p className="text-lg font-semibold text-white mt-1 font-mono">{PHONE_DISPLAY}</p>
               <p className="text-xs text-white/60 mt-1">Direct call &bull; Mon–Fri</p>
             </div>
             <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-[#E8797A] font-medium group-hover:underline">
@@ -94,7 +101,7 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
 
           {/* 2. WhatsApp Card */}
           <a
-            href={whatsappUrl}
+            href={whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             className="group p-6 rounded-2xl bg-[#25D366]/10 border border-[#25D366]/30 hover:border-[#25D366] hover:bg-[#25D366]/20 transition-all flex flex-col justify-between"
@@ -115,7 +122,7 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
 
           {/* 3. Email Card */}
           <a
-            href="mailto:contact@aalayastudios.com"
+            href={MAILTO_HREF}
             className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#E8797A]/60 hover:bg-white/10 transition-all flex flex-col justify-between"
           >
             <div>
@@ -123,11 +130,32 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
                 <Mail className="w-5 h-5" />
               </div>
               <span className="text-xs uppercase font-mono text-white/50 tracking-wider">Email</span>
-              <p className="text-lg font-semibold text-white mt-1">contact@aalayastudios.com</p>
-              <p className="text-xs text-white/60 mt-1">Send your details anytime</p>
+              <p className="text-sm sm:text-base font-semibold text-white mt-1 break-all">{EMAIL}</p>
+              <p className="text-xs text-white/60 mt-1">Opens your mail app with a message</p>
             </div>
             <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-[#E8797A] font-medium group-hover:underline">
               <span>Write Email</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </div>
+          </a>
+
+          {/* 4. Instagram Card */}
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group p-6 rounded-2xl bg-[#E1306C]/10 border border-[#E1306C]/30 hover:border-[#E1306C] hover:bg-[#E1306C]/20 transition-all flex flex-col justify-between"
+          >
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-[#E1306C]/20 text-[#E1306C] flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <Instagram className="w-5 h-5" />
+              </div>
+              <span className="text-xs uppercase font-mono text-[#E1306C] tracking-wider">Instagram</span>
+              <p className="text-base font-semibold text-white mt-1 break-all">@{INSTAGRAM_HANDLE}</p>
+              <p className="text-xs text-white/60 mt-1">See our latest work</p>
+            </div>
+            <div className="mt-4 pt-3 border-t border-white/10 flex items-center gap-1.5 text-xs text-[#E1306C] font-medium group-hover:underline">
+              <span>Open Profile</span>
               <ExternalLink className="w-3.5 h-3.5" />
             </div>
           </a>
@@ -246,6 +274,13 @@ export const ContactCTA: React.FC<ContactCTAProps> = ({ initialMessage = '' }) =
                       className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/15 text-white placeholder-white/30 text-sm focus:outline-none focus:border-[#B8620B] transition-colors resize-none"
                     />
                   </div>
+
+                  {error && (
+                    <div className="flex items-start gap-2 p-3.5 rounded-xl bg-[#C85A17]/15 border border-[#C85A17]/40 text-xs text-[#F5C9A8]">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-[#E8797A]" />
+                      <span>{error}</span>
+                    </div>
+                  )}
 
                   <button
                     type="submit"

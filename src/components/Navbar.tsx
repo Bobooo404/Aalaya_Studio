@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, Instagram, Mail } from 'lucide-react';
+import {
+  INSTAGRAM_URL, MAILTO_HREF, TEL_HREF, whatsappUrl
+} from '../config/contact';
 
 interface NavbarProps {
   onOpenConsultation?: () => void;
@@ -115,7 +118,27 @@ export const Navbar: React.FC<NavbarProps> = () => {
         {/* Action Quick Links */}
         <div className="hidden sm:flex items-center gap-2.5">
           <a
-            href="https://wa.me/14158902800?text=Hello%20Aalaya%20Studios%2C%20I%20would%20like%20to%20talk%20about%20my%20project."
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-full bg-[#E1306C]/10 text-[#E1306C] hover:bg-[#E1306C] hover:text-white transition-all shadow-xs"
+            title="Instagram"
+            aria-label="Instagram"
+          >
+            <Instagram className="w-4 h-4" />
+          </a>
+
+          <a
+            href={MAILTO_HREF}
+            className="p-2 rounded-full bg-[#E8797A]/10 text-[#E8797A] hover:bg-[#E8797A] hover:text-white transition-all shadow-xs"
+            title="Email us"
+            aria-label="Email"
+          >
+            <Mail className="w-4 h-4" />
+          </a>
+
+          <a
+            href={whatsappUrl()}
             target="_blank"
             rel="noopener noreferrer"
             className="p-2 rounded-full bg-[#25D366]/10 text-[#25D366] hover:bg-[#25D366] hover:text-white transition-all shadow-xs"
@@ -126,7 +149,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           </a>
 
           <a
-            href="tel:+91XXXXXXXX"
+            href={TEL_HREF}
             className="p-2 rounded-full bg-[#F5F1E8] text-[#1A1A1A] hover:bg-[#B8620B] hover:text-white transition-all shadow-xs"
             title="Call Studio"
             aria-label="Phone"
@@ -183,7 +206,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   Get in Touch
                 </a>
                 <a
-                  href="https://wa.me/14158902800"
+                  href={whatsappUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-[#25D366]/10 text-[#15803d] text-xs uppercase tracking-wider font-semibold"
@@ -191,6 +214,31 @@ export const Navbar: React.FC<NavbarProps> = () => {
                   <MessageCircle className="w-4 h-4 text-[#25D366]" />
                   <span>WhatsApp Chat</span>
                 </a>
+                <div className="grid grid-cols-3 gap-2.5">
+                  <a
+                    href={TEL_HREF}
+                    className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-[#F5F1E8] text-[#1A1A1A] text-[11px] uppercase tracking-wider font-semibold"
+                  >
+                    <Phone className="w-3.5 h-3.5 text-[#B8620B]" />
+                    <span>Call</span>
+                  </a>
+                  <a
+                    href={MAILTO_HREF}
+                    className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-[#E8797A]/10 text-[#C85A17] text-[11px] uppercase tracking-wider font-semibold"
+                  >
+                    <Mail className="w-3.5 h-3.5" />
+                    <span>Email</span>
+                  </a>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-1.5 py-3 rounded-xl bg-[#E1306C]/10 text-[#E1306C] text-[11px] uppercase tracking-wider font-semibold"
+                  >
+                    <Instagram className="w-3.5 h-3.5" />
+                    <span>Insta</span>
+                  </a>
+                </div>
               </div>
             </div>
           </motion.div>

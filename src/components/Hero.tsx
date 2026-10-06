@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Phone, MessageCircle, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
   onExploreWork?: () => void;
@@ -167,25 +167,6 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork }) => {
               <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
 
-            <a
-              href="#contact"
-              id="hero-get-in-touch-btn"
-              className="group inline-flex items-center gap-2.5 px-7 py-4 rounded-full bg-white border border-[#E5DFD5] text-[#2C2C2C] text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:scale-105 hover:border-[#B8620B] hover:text-[#B8620B] hover:shadow-md active:scale-100 cursor-pointer"
-            >
-              <Phone className="w-4 h-4 text-[#B8620B]" />
-              <span>Get in Touch</span>
-            </a>
-
-            <a
-              href="https://wa.me/14158902800?text=Hello%20Aalaya%20Studios%2C%20I%20would%20like%20to%20talk%20about%20my%20project."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-4 rounded-full bg-[#25D366]/10 border border-[#25D366]/30 text-[#15803d] text-xs uppercase tracking-wider font-semibold transition-all duration-300 hover:scale-105 hover:bg-[#25D366] hover:text-white hover:shadow-md cursor-pointer"
-              title="Chat on WhatsApp"
-            >
-              <MessageCircle className="w-4 h-4 text-[#25D366] group-hover:text-white" />
-              <span>WhatsApp</span>
-            </a>
           </motion.div>
 
         </div>

@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/portfolioData';
 import { Project } from '../types';
+import { whatsappUrl } from '../config/contact';
 
 interface FeaturedProjectSectionProps {
   onInquireProject?: (projectTitle: string) => void;
@@ -311,9 +312,9 @@ export const FeaturedProjectSection: React.FC<FeaturedProjectSectionProps> = ({
                 </button>
 
                 <a
-                  href={`https://wa.me/14158902800?text=${encodeURIComponent(
+                  href={whatsappUrl(
                     `Hello Aalaya Studios, I would like to talk about a project like ${project.title}.`
-                  )}`}
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#25D366]/20 text-[#25D366] hover:bg-[#25D366] hover:text-white text-sm font-medium transition-all"

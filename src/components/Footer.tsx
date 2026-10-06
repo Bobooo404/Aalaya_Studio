@@ -1,5 +1,8 @@
 import React from 'react';
-import { ArrowUp, Phone, Mail, MessageCircle } from 'lucide-react';
+import { ArrowUp, Phone, Mail, MessageCircle, Instagram } from 'lucide-react';
+import {
+  EMAIL, INSTAGRAM_HANDLE, INSTAGRAM_URL, MAILTO_HREF, PHONE_DISPLAY, TEL_HREF, whatsappUrl
+} from '../config/contact';
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -121,7 +124,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Col 4: Direct Contact with Indian dialing code +91 XXXXXXXX (occupies 3 cols on lg) */}
+          {/* Col 4: Direct Contact (occupies 3 cols on lg) */}
           <div className="lg:col-span-3">
             <h4 className="text-xs uppercase font-mono tracking-widest text-white font-semibold mb-3.5">
               Direct Contact
@@ -129,20 +132,36 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2.5 text-xs text-white/65">
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#B8620B] shrink-0" />
-                <a href="tel:+91XXXXXXXX" className="hover:text-white transition-colors font-mono">
-                  +91 XXXXXXXX
+                <a href={TEL_HREF} className="hover:text-white transition-colors font-mono">
+                  {PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle className="w-3.5 h-3.5 text-[#25D366] shrink-0" />
-                <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className="hover:text-white transition-colors">
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
                   WhatsApp Chat
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#E8797A] shrink-0" />
-                <a href="mailto:contact@aalayastudios.com" className="hover:text-white transition-colors">
-                  contact@aalayastudios.com
+                <a href={MAILTO_HREF} className="hover:text-white transition-colors break-all">
+                  {EMAIL}
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Instagram className="w-3.5 h-3.5 text-[#E1306C] shrink-0" />
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  @{INSTAGRAM_HANDLE}
                 </a>
               </li>
             </ul>
